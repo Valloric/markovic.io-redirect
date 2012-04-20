@@ -1,10 +1,13 @@
+require 'erb'
+
 class Wwwizer
   def self.call(env)
     request = Rack::Request.new(env)
     response = Rack::Response.new
     
-    response.redirect("http://www.#{request.host}#{request.path}", 301)
-    response.body = ["Redirected"]
+    url = "http://www.#{request.host}#{request.path}#{("?" + request.query_string) if request.query_string}"
+    response.redirect(url, 301)
+    response.body = [%Q{Click <a href="#{ERB::Util.h url}">here</a> if you are not redirected.}]
     response.finish
   end
 end
