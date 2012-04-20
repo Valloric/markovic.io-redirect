@@ -17,3 +17,7 @@ Age: 0
 Via: 1.1 varnish
 
 Click <a href="http://www.zzz-yourdomaingoeshere-zzz.com/">here</a> if you are not redirected.
+
+---
+
+To run tests: bundle && bundle exec ruby test.rb
