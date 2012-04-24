@@ -1,2 +1,11 @@
-require File.dirname(__FILE__) + '/wwwizer'
-run Wwwizer
+require 'erb'
+
+run proc { |env| 
+  request = Rack::Request.new(env)
+  response = Rack::Response.new
+  
+  url = "http://www.#{request.host}#{request.path}#{("?" + request.query_string) if !request.query_string.empty?}"
+  response.redirect(url, 301)
+  response.body = [%Q{Click <a href="#{ERB::Util.h url}">here</a> if you are not redirected.}]
+  response.finish
+}
