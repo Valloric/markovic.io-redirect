@@ -20,5 +20,5 @@ Click <a href="http://www.zzz-yourdomaingoeshere-zzz.com/">here</a> if you are n
 
 ---
 
-To run tests: bundle && bundle exec ruby test.rb
+To run tests: rake
 To delete test app: heroku destroy
